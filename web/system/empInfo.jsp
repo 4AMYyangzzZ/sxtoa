@@ -26,9 +26,9 @@
             $(".select1").uedSelect({
                 width : 345
             });
-        });
+        })
         function comeBack() {
-            location.href="servlet/EmployeeServlet?method=empFindAll";
+            location.href="${pageContext.request.contextPath}/selectAllEmp.do";
         }
     </script>
 </head>
@@ -50,12 +50,12 @@
     <ul class="forminfo">
         <li>
             <label>用户名</label>
-            <label>${emp.empId}</label>
+            <label>${emp.empid}</label>
         </li>
         <li>
         <li>
             <label>真实姓名</label>
-            <label>${emp.realName}</label>
+            <label>${emp.realname}</label>
         </li>
         <li>
             <label>性别</label>
@@ -63,37 +63,37 @@
         </li>
         <li>
             <label>出生日期</label>
-            <label>${emp.birthDate}</label>
+            <label>${emp.birthdate}</label>
         </li>
         <li>
         <li>
             <label>入职时间</label>
-            <label>${emp.hireDate}</label>
+            <label>${emp.hiredate}</label>
         </li>
 
         <li>
             <label>离职时间</label>
-            <label>${emp.leaveDate}</label>
+            <label>${emp.leavedate}</label>
         </li>
         <li>
             <label>是否在职</label>
             <label>
-                <c:if test="${emp.onDuty==1}">
+                <c:if test="${emp.onduty==1}">
                     是
                 </c:if>
-                <c:if test="${emp.onDuty==0}">
+                <c:if test="${emp.onduty==0}">
                     否
                 </c:if>
             </label>
         </li>
         <li>
             <label>所属部门<b>*</b></label>
-            <label>${emp.deptName}</label>
+            <label>${emp.department.deptName}</label>
 
         </li>
         <li>
             <label>直接上级<b>*</b></label>
-            <label>${emp.emp_empId}<b>*</b></label>
+            <label>${emp.emp_empid}<b>*</b></label>
         </li>
         </li>
         <li>

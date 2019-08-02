@@ -28,11 +28,11 @@
 <div class="formbody">
 
     <div class="formtitle"><span>基本信息</span></div>
-    <form action="servlet/PositionServlet?method=updatePos" method="post">
+    <form action="${pageContext.request.contextPath}/updatePos.do" method="post">
         <ul class="forminfo">
-            <li><label>岗位编号</label><input name="posId" type="text" class="dfinput" value="${pos.posId}"/> </li>
-            <li><label>岗位名称</label><input name="pName" type="text" class="dfinput" value="${pos.pName}"/> </li>
-            <li><label>岗位描述</label><input name="pDesc" type="text" class="dfinput" value="${pos.pDesc}"/></li>
+            <li><label>岗位编号</label><input name="posid" type="text" class="dfinput" value="${pos.posid}"/> </li>
+            <li><label>岗位名称</label><input name="pname" type="text" class="dfinput" value="${pos.pname}"/> </li>
+            <li><label>岗位描述</label><input name="pdesc" type="text" class="dfinput" value="${pos.pdesc}"/></li>
             <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存"/></li>
         </ul>
     </form>

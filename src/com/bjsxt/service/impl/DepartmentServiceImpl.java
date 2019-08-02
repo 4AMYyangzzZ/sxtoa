@@ -1,41 +1,49 @@
 package com.bjsxt.service.impl;
 
-import com.bjsxt.dao.DepartmentDao;
-import com.bjsxt.dao.impl.DepartmentDaoImpl;
-import com.bjsxt.entity.Department;
+import com.bjsxt.pojo.Department;
+import com.bjsxt.mapper.DepartmentMapper;
 import com.bjsxt.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public class DepartmentServiceImpl implements DepartmentService{
-    private DepartmentDao departmentDao=new DepartmentDaoImpl();
-    @Override
-    public Department findDeptByEmpId(String empId) {
-        return departmentDao.findDeptByEmpId(empId);
+    @Autowired
+    private DepartmentMapper departmentMapper;
+
+    public DepartmentMapper getDepartmentMapper() {
+        return departmentMapper;
+    }
+
+    public void setDepartmentMapper(DepartmentMapper departmentMapper) {
+        this.departmentMapper = departmentMapper;
     }
 
     @Override
-    public boolean add(Department dept) {
-        return departmentDao.save(dept)>0;
+    public int addDepartment(Department dept) {
+        return departmentMapper.addDepartment(dept);
     }
 
     @Override
-    public List<Department> findAll() {
-        return departmentDao.findAll();
+    public List<Department> selectAllDept() {
+        return departmentMapper.selectAllDept();
     }
 
     @Override
-    public boolean delete(int deptNo) {
-        return departmentDao.delete(deptNo)>0;
+    public Department selectDeptById(String deptNo) {
+        return departmentMapper.selectDeptById(deptNo);
     }
 
     @Override
-    public Department findById(int deptNo) {
-        return departmentDao.findById(deptNo);
+    public int updateDeptById(Department department) {
+        return departmentMapper.updateDeptById(department);
     }
 
     @Override
-    public boolean update(Department dept) {
-        return departmentDao.update(dept)>0;
+    public int deleteDeptById(String deptNo) {
+        return departmentMapper.deleteDeptById(deptNo);
     }
 }

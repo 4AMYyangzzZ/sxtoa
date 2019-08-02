@@ -30,7 +30,7 @@
 
     <div class="formtitle"><span>基本信息</span></div>
 
-        <form action="servlet/DepartmentServlet?method=update&deptNo=${dept.deptNo}" method="post">
+        <form action="${pageContext.request.contextPath}/updateDeptById.do?deptNo=${dept.deptNo}" method="post">
             <ul class="forminfo">
                 <li><label>部门编号</label><input name="deptNo" type="text" readonly class="dfinput" value="${dept.deptNo}"/> </li>
                 <li><label>部门名称</label><input name="deptName" type="text" class="dfinput"  value="${dept.deptName}"/></li>
@@ -40,7 +40,7 @@
         </form>
 </div>
 
-
+${error}
 </body>
 
 </html>

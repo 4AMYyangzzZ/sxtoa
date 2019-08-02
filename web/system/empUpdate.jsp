@@ -21,6 +21,7 @@
     <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="js/select-ui.min.js"></script>
     <script type="text/javascript" src="editor/kindeditor.js"></script>
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -44,15 +45,15 @@
 <div class="formbody">
 
     <div class="formtitle"><span>基本信息</span></div>
-    <form action="servlet/EmployeeServlet?method=empUpdate" method="post">
+    <form action="${pageContext.request.contextPath}/updateEmpById.do" method="post">
         <ul class="forminfo">
             <li>
                 <label>用户名</label>
-                <input name="empId" type="text" class="dfinput" value="${emp.empId}" /><i>必须唯一，也可以根据真实姓名自动生成</i></li>
+                <input name="empid" type="text" class="dfinput" value="${emp.empid}" /><i>必须唯一，也可以根据真实姓名自动生成</i></li>
             <li>
             <li>
                 <label>真实姓名</label>
-                <input name="realName" type="text" class="dfinput" value="${emp.realName}"/><i></i></li>
+                <input name="realname" type="text" class="dfinput" value="${emp.realname}"/><i></i></li>
             <li>
                 <label>性别</label><cite>
                 <input name="sex" type="radio" value="男" <c:if test='${emp.sex=="男"}'>checked="checked"</c:if> />男&nbsp;&nbsp;&nbsp;&nbsp;
@@ -61,26 +62,26 @@
             </li>
             <li>
                 <label>出生日期</label>
-                <input name="birthDate" type="text" class="dfinput" value="${emp.birthDate}"/><i>也可以根据身份证号自动获取</i></li>
+                <input name="birthdate" type="text" class="dfinput" value="${emp.birthdate}" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})" /><i>也可以根据身份证号自动获取</i></li>
             <li>
             <li>
                 <label>入职时间</label>
-                <input name="hireDate" type="text" class="dfinput" value="${emp.hireDate}"/><i></i></li>
+                <input name="hiredate" type="text" class="dfinput" value="${emp.hiredate}" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/><i></i></li>
 
             <li>
                 <label>离职时间</label>
-                <input name="leaveDate" type="text" class="dfinput" value="${emp.leaveDate}"/><i></i></li>
+                <input name="leavedate" type="text" class="dfinput" value="${emp.leavedate}" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/><i></i></li>
             <li>
                 <label>是否在职</label><cite>
-                <input name="onDuty" type="radio" value="1" <c:if test='${emp.onDuty==1}'>checked="checked" </c:if> />是&nbsp;&nbsp;&nbsp;&nbsp;
-                <input name="onDuty" type="radio" value="0" <c:if test='${emp.onDuty==0}'>checked="checked" </c:if> />否</cite>
+                <input name="onduty" type="radio" value="1" <c:if test='${emp.onduty==1}'>checked="checked" </c:if> />是&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="onduty" type="radio" value="0" <c:if test='${emp.onduty==0}'>checked="checked" </c:if> />否</cite>
             </li>
             <li>
                 <label>所属部门<b>*</b></label>
                 <div class="vocation">
-                    <select class="select1" name="dept">
+                    <select class="select1" name="deptno">
                         <c:forEach items="${deptList}" var="dept">
-                            <option value="${dept.deptNo}" <c:if test='${emp.deptNo==dept.deptNo}'>selected="selected"</c:if>>${dept.deptName}</option>
+                            <option value="${dept.deptNo}" <c:if test='${emp.deptno==dept.deptNo}'>selected="selected"</c:if>>${dept.deptName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -89,9 +90,9 @@
             <li>
                 <label>直接上级<b>*</b></label>
                 <div class="vocation">
-                    <select class="select1" name="mgr">
+                    <select class="select1" name="emp_empid">
                         <c:forEach items="${mgrList}" var="mgr">
-                            <option value="${mgr.empId}" <c:if test='${emp.emp_empId==mgr.empId}'>selected="selected" </c:if>>${mgr.realName}</option>
+                            <option value="${mgr.empid}" <c:if test='${emp.emp_empid==mgr.empid}'>selected="selected" </c:if>>${mgr.realname}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -122,7 +123,6 @@
     </form>
 
 </div>
-${emp.sex}
 </body>
 
 </html>

@@ -35,6 +35,13 @@
             });
 
         });
+
+        function confirmDelete(posid) {
+            var flag=confirm("您确定要删除该岗位的信息吗?");
+            if (flag){
+                location.href="${pageContext.request.contextPath}/deletePosById.do?posid="+posid;
+            }
+        }
     </script>
 
 
@@ -71,12 +78,12 @@
         <c:forEach items="${posList}" var="pos">
             <tr>
                 <td><input name="" type="checkbox" value="" /></td>
-                <td>${pos.posId}</td>
-                <td>${pos.pName}</td>
-                <td>${pos.pDesc}</td>
+                <td>${pos.posid}</td>
+                <td>${pos.pname}</td>
+                <td>${pos.pdesc}</td>
                 <td>
-                    <a href="servlet/PositionServlet?method=findPosById&posId=${pos.posId}" class="tablelink">修改</a>
-                    <a href="#" class="tablelink click"> 删除</a></td>
+                    <a href="${pageContext.request.contextPath}/selectPosById.do?posid=${pos.posid}" class="tablelink">修改</a>
+                    <a href="javascript:confirmDelete(${pos.posid})" class="tablelink click"> 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

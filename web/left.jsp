@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -64,12 +63,12 @@
         <dd>
             <div class="title"><span><img src="images/leftico03.png" /></span>人事管理</div>
             <ul class="menuson">
-                <li><cite></cite><a href="/sxtoa/system/deptAdd.jsp" target="rightFrame">添加部门</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/servlet/DepartmentServlet?method=findAll" target="rightFrame">部门管理</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/system/positionAdd.jsp" target="rightFrame">添加岗位</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/servlet/PositionServlet?method=posFindAll" target="rightFrame">岗位管理</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/servlet/EmployeeServlet?method=posAndDeptAndMgrFindAll&flag=add" target="rightFrame">添加员工</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/servlet/EmployeeServlet?method=posAndDeptAndMgrFindAll&flag=select" target="rightFrame">员工管理</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/system/deptAdd.jsp" target="rightFrame">添加部门</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/selectAllDept.do" target="rightFrame">部门管理</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/system/positionAdd.jsp" target="rightFrame">添加岗位</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/selectAllPos.do" target="rightFrame">岗位管理</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/selectRequiredInfo.do" target="rightFrame">添加员工</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/selectAllEmp.do" target="rightFrame">员工管理</a><i></i></li>
             </ul>
         </dd>
         <dd>

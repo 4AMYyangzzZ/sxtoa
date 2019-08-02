@@ -1,16 +1,17 @@
 package com.bjsxt.service;
 
-import com.bjsxt.entity.Position;
+import com.bjsxt.pojo.Position;
 
 import java.util.List;
 
 public interface PositionService {
+    int addPosition(Position position);
 
-    public boolean posAdd(Position pos);
+    List<Position> selectAllPos();
 
-    public List<Position> posFindAll();
+    int updatePos(Position position);
 
-    public boolean updatePos(Position pos);
+    Position selectPosById(String posid);
 
-    public Position findPosById(int posId);
+    int deletePosById(String posid);
 }

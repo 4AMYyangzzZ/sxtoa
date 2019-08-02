@@ -1,19 +1,17 @@
 package com.bjsxt.service;
 
-import com.bjsxt.entity.Department;
+import com.bjsxt.pojo.Department;
 
 import java.util.List;
 
 public interface DepartmentService {
-    public boolean add(Department dept);
+    public int addDepartment(Department dept);
 
-    public List<Department> findAll();
+    List<Department> selectAllDept();
 
-    public boolean delete(int deptNo);
+    Department selectDeptById(String deptNo);
 
-    public Department findById(int deptNo);
+    int updateDeptById(Department department);
 
-    public boolean update(Department dept);
-
-    public Department findDeptByEmpId(String empId);
+    int deleteDeptById(String deptNo);
 }

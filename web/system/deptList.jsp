@@ -40,7 +40,7 @@
         function confirmDelete(deptNo) {
             var flag=confirm("您确定要删除该部门的信息吗?");
             if (flag){
-                location.href="servlet/DepartmentServlet?method=delete&deptNo="+deptNo;
+                location.href="${pageContext.request.contextPath}/deleteDeptById.do?deptNo="+deptNo;
             }
         }
     </script>
@@ -82,12 +82,13 @@
                 <td>${dept.deptName}</td>
                 <td>${dept.location}</td>
                 <td>
-                    <a href="servlet/DepartmentServlet?method=findById&deptNo=${dept.deptNo}" class="tablelink">修改</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="${pageContext.request.contextPath}/selectDeptById.do?deptNo=${dept.deptNo}" class="tablelink">修改</a> &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="javascript:confirmDelete(${dept.deptNo})" class="tablelink"> 删除</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
 
 
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.DepartmentMapper">
+    <insert id="addDepartment">
+        INSERT into dept VALUES (#{deptNo},#{deptName},#{location});
+    </insert>
+
+    <select id="selectAllDept" resultType="Department">
+        select * from dept;
+    </select>
+
+    <select id="selectDeptById" resultType="Department">
+        select * from dept WHERE deptNo=#{deptNo};
+    </select>
+
+    <update id="updateDeptById">
+        UPDATE dept SET deptName=#{deptName},location=#{location} WHERE deptNo=#{deptNo}
+    </update>
+
+    <delete id="deleteDeptById">
+        DELETE FROM dept WHERE deptNo=#{deptNo}
+    </delete>
+</mapper>

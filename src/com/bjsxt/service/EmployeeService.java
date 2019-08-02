@@ -1,32 +1,29 @@
 package com.bjsxt.service;
 
-import com.bjsxt.entity.*;
+import com.bjsxt.pojo.Employee;
 
-import java.util.Date;
 import java.util.List;
 
 public interface EmployeeService {
-    public boolean empAdd(Employee emp);
+    public Employee login(Employee employee);
 
-    public List<CombineDeptAndEmpAndPos> empFindAll();
+    List<Employee> selectAllLeader();
 
-    public List<Department> deptFindAll();
+    List<Employee> selectAllEmp();
 
-    public List<Position> posFindAll();
+    int addEmployee(Employee employee);
 
-    public List<CombineMgr> mgrFindAll();
+    Employee selectEmpById(String empid);
 
-    public CombineDeptAndEmpAndPos empInfoById(String empId);
+    List<Employee> selectAllLeaderExcludeSelf(String empid);
 
-    public boolean empUpdate(Employee emp);
+    int updateEmpById(Employee employee);
 
-    public List<CombineMgr> mgrFindAllExcludeSelef(String empId);
+    int deleteEmpById(String empid);
 
-    public boolean empDelete(String empId);
+    Employee checkOldPwd(String empid, String password);
 
-    public List<CombineDeptAndEmpAndPos> empQuery(String empId, int deptNo, int onDuty, Date hireDate);
+    int updatePwd(String empid, String password);
 
-    public boolean modifyPwd(String empId);
-
-    public CombineDeptAndEmpAndPos empInfoById(String empId, String password);
+    List<Employee> selectEmpByCondition(Employee employee);
 }

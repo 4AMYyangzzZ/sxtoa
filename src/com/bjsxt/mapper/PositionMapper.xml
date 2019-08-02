@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.PositionMapper">
+    <insert id="addPosition">
+        insert into position VALUES (#{posid},#{pname},#{pdesc})
+    </insert>
+
+    <select id="selectAllPos" resultType="Position">
+        SELECT * FROM position;
+    </select>
+
+    <delete id="deletePosById">
+        DELETE FROM position WHERE posid=#{posid}
+    </delete>
+
+    <update id="updatePos">
+        UPDATE position SET pname=#{pname},pdesc=#{pdesc} WHERE posid=#{posid}
+    </update>
+
+    <select id="selectPosById" resultType="Position">
+        select * from position WHERE posid=#{posid};
+    </select>
+</mapper>

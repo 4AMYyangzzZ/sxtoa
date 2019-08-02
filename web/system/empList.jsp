@@ -75,15 +75,15 @@
 
 <div class="rightinfo">
 
-    <form action="servlet/EmployeeServlet?method=empQuery" method="post">
+    <form action="${pageContext.request.contextPath}/selectEmpByCondition.do" method="post">
         <ul class="prosearch">
             <li>
                 <label>查询：</label><i>用户名</i>
                 <a>
-                    <input name="empId" type="text" class="scinput" value="${empId}" />
+                    <input name="empid" type="text" class="scinput" value="${empid}" />
                 </a><i>所属部门</i>
                 <a>
-                    <select class="select1" name="dept">
+                    <select class="select1" name="deptno">
                         <option value="-1">---不限---</option>
                         <c:forEach items="${deptList}" var="dept">
                             <option value="${dept.deptNo}" <c:if test="${dept.deptNo==deptNo}">selected="selected"</c:if>>${dept.deptName}</option>
@@ -93,14 +93,14 @@
             </li>
             <li>
                 <label>是否在职：</label>
-                <input name="onDuty" type="radio" value="-1" <c:if test="${onDuty==-1}">checked="checked"</c:if> />&nbsp;所有&nbsp;&nbsp;
-                <input name="onDuty" type="radio" value="1" <c:if test="${onDuty==1}">checked="checked"</c:if> />&nbsp;是&nbsp;&nbsp;
-                <input name="onDuty" type="radio" value="0" <c:if test="${onDuty==0}">checked="checked"</c:if>/>&nbsp;否
+                <input name="onduty" type="radio" value="-1" checked="checked" />&nbsp;所有&nbsp;&nbsp;
+                <input name="onduty" type="radio" value="1" />&nbsp;是&nbsp;&nbsp;
+                <input name="onduty" type="radio" value="0"/>&nbsp;否
             </li>
             <li>
                 <label>入职时间：</label>
                 <a>
-                    <input name="hireDate" type="text" class="scinput" value="${hireDate}"  onfocus="WdatePicker()"/>
+                    <input name="hiredate" type="text" class="scinput" value="${hiredate}"  onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/>
                 </a>
             </li>
             <a>
@@ -131,17 +131,17 @@
                 <td>
                     <input name="" type="checkbox" value="" />
                 </td>
-                <td>${emp.empId}</td>
-                <td>${emp.realName}</td>
-                <td>${emp.deptName}</td>
-                <td>${emp.pName}</td>
-                <td>${emp.hireDate}</td>
+                <td>${emp.empid}</td>
+                <td>${emp.realname}</td>
+                <td>${emp.department.deptName}</td>
+                <td>${emp.position.pname}</td>
+                <td>${emp.hiredate}</td>
                 <td>${emp.phone}</td>
                 <td>
-                    <a href="servlet/EmployeeServlet?method=empInfoById&empId=${emp.empId}&flag=check" class="tablelink">查看</a>
-                    <a href="servlet/EmployeeServlet?method=posAndDeptAndMgrFindAll&flag=update&empId=${emp.empId}" class="tablelink">修改</a>
-                    <a href="servlet/EmployeeServlet?method=empDelete&empId=${emp.empId}" id="del" class="tablelink click" onclick="return del()"> 删除</a>
-                    <a href="servlet/EmployeeServlet?method=modifyPwd&empId=${emp.empId}" class="tablelink"> 重置密码</a>
+                    <a href="${pageContext.request.contextPath}/selectEmpById.do?empid=${emp.empid}" class="tablelink">查看</a>
+                    <a href="${pageContext.request.contextPath}/selectUpdateInfo.do?empid=${emp.empid}" class="tablelink">修改</a>
+                    <a href="${pageContext.request.contextPath}/deleteEmpById.do?empid=${emp.empid}" id="del" class="tablelink click" onclick="return del()"> 删除</a>
+                    <a href="${pageContext.request.contextPath}/system/myPwd.jsp?empid=${emp.empid}" class="tablelink"> 重置密码</a>
                 </td>
             </tr>
         </c:forEach>

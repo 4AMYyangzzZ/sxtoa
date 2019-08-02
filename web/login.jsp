@@ -50,14 +50,14 @@
     <span class="systemlogo"></span>
 
     <div class="loginbox loginbox2">
-    <form action="servlet/EmployeeServlet?method=login" method="post">
+    <form action="${pageContext.request.contextPath}/login.do" method="post">
         <ul>
-            <li><input name="empId" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
+            <li><input name="empid" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
             <li><input name="password" type="password" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>
             <li class="yzm">
                 <span><input name="verify" type="text" value="验证码" onclick="JavaScript:this.value=''"/></span><cite><img src="ran.jpg" alt="" id="ran" onclick="modifyImg()"/></cite>
             </li>
-            <li><input name="" type="submit" class="loginbtn" value="登录"  onclick="javascript:window.location='main.html'"  /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
+            <li><input name="" type="submit" class="loginbtn" value="登录" /><label><input name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a href="#">忘记密码？</a></label></li>
         </ul>
     </form>
         ${error}

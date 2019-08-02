@@ -1,81 +1,79 @@
 package com.bjsxt.service.impl;
 
-import com.bjsxt.dao.EmployeeDao;
-import com.bjsxt.dao.impl.EmployeeDaoImpl;
-import com.bjsxt.entity.*;
+import com.bjsxt.mapper.EmployeeMapper;
+import com.bjsxt.pojo.Employee;
 import com.bjsxt.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeDao employeeDao=new EmployeeDaoImpl();
-    @Override
-    public boolean empAdd(Employee emp) {
-        return employeeDao.empAdd(emp)>0;
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
+    public EmployeeMapper getEmployeeMapper() {
+        return employeeMapper;
+    }
+
+    public void setEmployeeMapper(EmployeeMapper employeeMapper) {
+        this.employeeMapper = employeeMapper;
     }
 
     @Override
-    public List<CombineDeptAndEmpAndPos> empFindAll() {
-        return employeeDao.empFindAll();
+    public Employee login(Employee employee) {
+        return employeeMapper.login(employee);
     }
 
     @Override
-    public List<Department> deptFindAll() {
-        return employeeDao.deptFindAll();
+    public List<Employee> selectAllLeader() {
+        return employeeMapper.selectAllLeader();
     }
 
     @Override
-    public List<Position> posFindAll() {
-        return employeeDao.posFindAll();
+    public List<Employee> selectAllEmp() {
+        return employeeMapper.selectAllEmp();
     }
 
     @Override
-    public List<CombineMgr> mgrFindAll() {
-        return employeeDao.mgrFindAll();
+    public int addEmployee(Employee employee) {
+        employee.setPassword("root");
+        return employeeMapper.addEmployee(employee);
     }
 
     @Override
-    public CombineDeptAndEmpAndPos empInfoById(String empId) {
-        return employeeDao.empInfoById(empId);
+    public Employee selectEmpById(String empid) {
+        return employeeMapper.selectEmpById(empid);
     }
 
     @Override
-    public boolean empUpdate(Employee emp) {
-        return employeeDao.empUpdate(emp)>0;
+    public List<Employee> selectAllLeaderExcludeSelf(String empid) {
+        return employeeMapper.selectAllLeaderExcludeSelf(empid);
     }
 
     @Override
-    public List<CombineMgr> mgrFindAllExcludeSelef(String empId) {
-        return employeeDao.mgrFindAllExcludeSelef(empId);
+    public int updateEmpById(Employee employee) {
+        return employeeMapper.updateEmpById(employee);
     }
 
     @Override
-    public boolean empDelete(String empId) {
-        return employeeDao.empDelete(empId)>0;
+    public int deleteEmpById(String empid) {
+        return employeeMapper.deleteEmpById(empid);
     }
 
     @Override
-    public List<CombineDeptAndEmpAndPos> empQuery(String empId, int deptNo, int onDuty, Date hireDate) {
-        return employeeDao.empQuery(empId,deptNo,onDuty,hireDate);
+    public Employee checkOldPwd(String empid, String password) {
+        return employeeMapper.checkOldPwd(empid,password);
     }
 
     @Override
-    public boolean modifyPwd(String empId) {
-        return employeeDao.modifyPwd(empId)>0;
+    public int updatePwd(String empid, String password) {
+        return employeeMapper.updatePwd(empid,password);
     }
 
     @Override
-    public CombineDeptAndEmpAndPos empInfoById(String empId, String password) {
-        CombineDeptAndEmpAndPos emp=employeeDao.empInfoById(empId);
-        if (emp==null) {
-            return null;
-        }else {
-            if (emp.getPassword().equals(password)){
-                return emp;
-            }else {
-                return null;
-            }
-        }
+    public List<Employee> selectEmpByCondition(Employee employee) {
+        return employeeMapper.selectEmpByCondition(employee);
     }
 }

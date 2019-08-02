@@ -48,15 +48,15 @@
 <div class="formbody">
 
     <div class="formtitle"><span>基本信息</span></div>
-    <form action="servlet/EmployeeServlet?method=empAdd" method="post">
+    <form action="${pageContext.request.contextPath}/addEmployee.do" method="post">
         <ul class="forminfo">
             <li>
                 <label>用户名</label>
-                <input name="empId" type="text" class="dfinput" /></li>
+                <input name="empid" type="text" class="dfinput" /></li>
             <li>
             <li>
                 <label>真实姓名</label>
-                <input name="realName" type="text" class="dfinput" /><i></i></li>
+                <input name="realname" type="text" class="dfinput" /><i></i></li>
             <li>
                 <label>性别</label><cite>
                 <input name="sex" type="radio" value="男" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,29 +65,29 @@
             </li>
             <li>
                 <label>出生日期</label>
-                <input name="birthDate" type="text" class="dfinput" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})" /><i>也可以根据身份证号自动获取</i></li>
+                <input name="birthdate" type="text" class="dfinput" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})" /><i>也可以根据身份证号自动获取</i></li>
             <li>
             <li>
                 <label>入职时间</label>
-                <input name="hireDate" type="text" class="dfinput" onfocus="WdatePicker()"/><i></i></li>
+                <input name="hiredate" type="text" class="dfinput" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/><i></i></li>
 
             <li>
                 <label>离职时间</label>
-                <input name="leaveDate" type="text" class="dfinput" onfocus="WdatePicker()"/><i></i></li>
+                <input name="leavedate" type="text" class="dfinput" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/><i></i></li>
             <li>
                 <label>是否在职</label><cite>
-                <input name="onDuty" type="radio" value="1" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
-                <input name="onDuty" type="radio" value="0" />否</cite>
+                <input name="onduty" type="radio" value="1" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="onduty" type="radio" value="0" />否</cite>
             </li>
             <li>
                 <label>员工类型</label><cite>
-                <input name="empType" type="radio" value="1" checked="checked" />基层员工&nbsp;&nbsp;&nbsp;&nbsp;
-                <input name="empType" type="radio" value="0" />各级管理人员</cite>
+                <input name="emptype" type="radio" value="1" checked="checked" />基层员工&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="emptype" type="radio" value="0" />各级管理人员</cite>
             </li>
             <li>
                 <label>所属部门<b>*</b></label>
                 <div class="vocation">
-                    <select class="select1" name="dept">
+                    <select class="select1" name="deptno">
                         <c:forEach items="${deptList}" var="dept">
                             <option value="${dept.deptNo}">${dept.deptName}</option>
                         </c:forEach>
@@ -97,9 +97,9 @@
             <li>
                 <label>从事岗位<b>*</b></label>
                 <div class="vocation">
-                    <select class="select1" name="pos">
+                    <select class="select1" name="posid">
                         <c:forEach items="${posList}" var="pos">
-                            <option value="${pos.posId}">${pos.pName}</option>
+                            <option value="${pos.posid}">${pos.pname}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -107,9 +107,9 @@
             <li>
                 <label>直接上级<b>*</b></label>
                 <div class="vocation">
-                    <select class="select1" name="mgr">
+                    <select class="select1" name="emp_empid">
                         <c:forEach items="${mgrList}" var="mgr">
-                            <option value="${mgr.empId}">${mgr.realName}</option>
+                            <option value="${mgr.empid}">${mgr.realname}</option>
                         </c:forEach>
                     </select>
                 </div>

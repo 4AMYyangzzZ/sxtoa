@@ -1,31 +1,48 @@
 package com.bjsxt.service.impl;
 
-import com.bjsxt.dao.PositionDao;
-import com.bjsxt.dao.impl.PositionDaoImpl;
-import com.bjsxt.entity.Position;
+import com.bjsxt.mapper.PositionMapper;
+import com.bjsxt.pojo.Position;
 import com.bjsxt.service.PositionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PositionServiceImpl implements PositionService {
-    private PositionDao positionDao=new PositionDaoImpl();
-    @Override
-    public boolean posAdd(Position pos) {
-        return positionDao.posAdd(pos)>0;
+    @Autowired
+    private PositionMapper positionMapper;
+
+    public PositionMapper getPositionMapper() {
+        return positionMapper;
+    }
+
+    public void setPositionMapper(PositionMapper positionMapper) {
+        this.positionMapper = positionMapper;
     }
 
     @Override
-    public List<Position> posFindAll() {
-        return positionDao.posFindAll();
+    public int addPosition(Position position) {
+        return positionMapper.addPosition(position);
     }
 
     @Override
-    public boolean updatePos(Position pos) {
-        return positionDao.updatePos(pos)>0;
+    public List<Position> selectAllPos() {
+        return positionMapper.selectAllPos();
     }
 
     @Override
-    public Position findPosById(int posId) {
-        return positionDao.findPosById(posId);
+    public int updatePos(Position position) {
+        return positionMapper.updatePos(position);
+    }
+
+    @Override
+    public Position selectPosById(String posid) {
+        return positionMapper.selectPosById(posid);
+    }
+
+    @Override
+    public int deletePosById(String posid) {
+        return positionMapper.deletePosById(posid);
     }
 }
