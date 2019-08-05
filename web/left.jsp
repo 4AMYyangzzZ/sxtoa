@@ -74,17 +74,17 @@
         <dd>
             <div class="title"><span><img src="images/leftico03.png" /></span>考勤管理</div>
             <ul class="menuson">
-                <li><cite></cite><a href="duty/dutyAdd.jsp" target="rightFrame">签到签退</a><i></i></li>
-                <li><cite></cite><a href="duty/dutyList.jsp" target="rightFrame">考勤管理</a><i></i></li>
-                <li><cite></cite><a href="myDuty.html" target="rightFrame">我的考勤</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/duty/dutyAdd.jsp" target="rightFrame">签到签退</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/duty/dutyList.jsp" target="rightFrame">考勤管理</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/duty/myDuty.jsp" target="rightFrame">我的考勤</a><i></i></li>
             </ul>
         </dd>
         <dd>
             <div class="title"><span><img src="images/leftico03.png" /></span>报销管理</div>
             <ul class="menuson">
-                <li><cite></cite><a href="expense/expenseAdd.jsp" target="rightFrame">添加报销</a><i></i></li>
-                <li><cite></cite><a href="/sxtoa/servlet/ExpenseServlet?method=toAudit" target="rightFrame">待审报销</a><i></i></li>
-                <li><cite></cite><a href="myExpense.html" target="rightFrame">我的报销</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/expense/expenseAdd.jsp" target="rightFrame">添加报销</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/toAudit.do" target="rightFrame">待审报销</a><i></i></li>
+                <li><cite></cite><a href="${pageContext.request.contextPath}/expense/myExpense.jsp" target="rightFrame">我的报销</a><i></i></li>
                 <li><cite></cite><a href="myAudit.html" target="rightFrame">我的审核历史</a><i></i></li>
             </ul>
         </dd>

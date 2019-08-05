@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Employee {
     private String empid;
@@ -34,6 +35,17 @@ public class Employee {
 
     //关联属性职位
     private Position position;
+
+    //关联属性考勤记录
+    private List<Duty>dutyList;
+
+    public List<Duty> getDutyList() {
+        return dutyList;
+    }
+
+    public void setDutyList(List<Duty> dutyList) {
+        this.dutyList = dutyList;
+    }
 
     public Position getPosition() {
         return position;

@@ -86,18 +86,18 @@
 
     <div class="formtitle"><span>基本信息</span></div>
 
-    <form action="servlet/ExpenseServlet?method=addExpense" method="post">
+    <form action="${pageContext.request.contextPath}/addExpense.do" method="post">
         <ul class="forminfo">
             <li>
                 <label>报销人</label>
-                <input name="empId" type="text" class="dfinput" readonly value="${emp.realName}"/><i></i></li>
+                <input name="empId" type="text" class="dfinput" readonly value="${sessionScope.user.empid}"/><i></i></li>
             <li>
             <li>
                 <label>报销总额</label>
                 <input name="totalAmount" type="text" class="dfinput" readonly/><i></i></li>
             <li>
                 <label>报销时间</label>
-                <input name="expTime" type="text" class="dfinput"  readonly value="当前时间"/><i></i></li>
+                <input name="expTime" type="text" class="dfinput"  readonly  onfocus="WdatePicker({skin:'whyGreen',lang:'en'})"/><i></i></li>
             <li>
             <li>
                 <label>具体报销项</label>
@@ -128,25 +128,13 @@
                 </table>
             </li>
             <li>
-
-            </li>
-            <li id="uploadphoto">
-                <label>上传报销图片</label>
-                <span>
-								<input name="photo" type="file" class="dfinput" /><i></i>
-								<input type="button"  class="btn"  value="添加图片" onclick="addPhoto()"/>
-							</span>
-            </li>
-            <li>
                 <label>审批人<b>*</b></label>
-                <input type="text" class="dfinput" name="nextAuditor" value="${emp.emp_empId}"/>
-                &nbsp;&nbsp;
-                <input name="" type="text" class="dfinput" placeholder="也可以在此输入首字母帮助显示" />
+                <input type="text" class="dfinput" name="nextAuditor" value="${sessionScope.user.emp_empid}"/>
             </li>
             </li>
             <li>
                 <label>总备注信息</label>
-                <textarea name="expDesc" cols="" rows="" class="textinput"></textarea>
+                <input name="expDesc" type="text" class="textinput"/>
             </li>
             <li>
                 <label>&nbsp;</label>

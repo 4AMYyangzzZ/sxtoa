@@ -12,8 +12,7 @@
         function sigIn () {
             $.ajax({
                 type:"POST",
-                url:"servlet/DutyServlet",
-                data:"method=sigin",
+                url:"${pageContext.request.contextPath}/sigin.do",
                 dataType:"text",
                 success:function (result) {
                     if (result==1){
@@ -34,8 +33,7 @@
             $("#sigout").click(function () {
                 $.ajax({
                     type:"POST",
-                    url:"servlet/DutyServlet",
-                    data:"method=sigout",
+                    url:"${pageContext.request.contextPath}/sigout.do",
                     dataType:"text",
                     success:function (result) {
                         $("#sout").html(result);

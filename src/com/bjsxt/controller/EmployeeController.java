@@ -60,7 +60,7 @@ public class EmployeeController {
             model.addAttribute("error", "用户名或者密码错误");
             return "login.jsp";
         }else {
-            session.setAttribute("user",employee );
+            session.setAttribute("user",employeeService.login(employee) );
             return "main.jsp";
         }
     }

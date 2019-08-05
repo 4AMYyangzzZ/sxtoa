@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2019/7/2 0002
-  Time: 下午 15:52
+  Date: 2019/8/4 0004
+  Time: 下午 15:28
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -21,7 +20,6 @@
     <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="js/select-ui.min.js"></script>
     <script type="text/javascript" src="editor/kindeditor.js"></script>
-    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -31,82 +29,52 @@
         });
     </script>
     <script type="text/javascript">
-       $(function () {
-           $.ajax({
-               type:"POST",
-               url:"${pageContext.request.contextPath}/selectRequiredMessage.do",
-               dataType:"text",
-               success:function (result) {
-                   eval("var deptArr="+result);
-                   $("#deptList").empty();
-                   $("#deptList").append('<option value="0" selected="selected">--不限--</option>');
-                   for(var i=0;i<deptArr.length;i++){
-                       $("#deptList").append("<option value="+deptArr[i].deptNo+">"+deptArr[i].deptName+"</option>")
-                   }
+        $(document).ready(function(){
+            $(".click").click(function(){
+                $(".tip").fadeIn(200);
+            });
 
-               },
-               error:function (xhr) {
-                   alert("hello"+xhr.status+" "+xhr.statusText);
-               }
-           });
-       });
-       function sel() {
-            var empId=$("#empId").val();
-            var deptNo=$("#deptList").val();
-            var dtDate=$("#dtDate").val();
-           alert(deptNo);
+            $(".tiptop a").click(function(){
+                $(".tip").fadeOut(200);
+            });
+
+            $(".sure").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+            $(".cancel").click(function(){
+                $(".tip").fadeOut(100);
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
             $.ajax({
                 type:"POST",
-                url:"${pageContext.request.contextPath}/selectDutyByCondition.do",
-                data:{"empId":empId,"deptNo":deptNo,"dtDate":dtDate},
+                url:"${pageContext.request.contextPath}/selectDutyByMyself.do",
                 dataType:"text",
                 success:function (result) {
-                    alert("ok")
-                   alert(result);
+                    alert(result);
                     eval("var dutyList="+result);
                     $("#tb").empty();
                     for (var i=0;i<dutyList.length;i++){
-                        for (var j=0;j<dutyList[i].dutyList.length;j++){
                             $("#tb").append('<tr>' +
                                 '<td>' +
                                 '<input name="" type="checkbox" value="" />' +
                                 '</td>' +
-                                '<td>'+dutyList[i].empid+'</td>' +
-                                '<td>'+dutyList[i].realname+'</td>' +
-                                '<td>'+dutyList[i].department.deptName+'</td>' +
-                                '<td>'+dutyList[i].dutyList[j].dtDate+'</td>' +
-                                '<td>'+dutyList[i].dutyList[j].signinTime+'</td>' +
-                                '<td>'+dutyList[i].dutyList[j].signoutTime+'</td>' +
+                                '<td>'+dutyList[i].dtDate+'</td>' +
+                                '<td>'+dutyList[i].signinTime+'</td>' +
+                                '<td>'+dutyList[i].signoutTime+'</td>' +
                                 '</tr>');
-                        }
                     }
                 }
                 // error:function (xhr) {
                 //     alert("world"+xhr.status+" "+xhr.statusText);
                 // }
             });
-       }
-
-       function setNull() {
-          //window.location.reload();
-         // alert("ok");
-           $("#empId").val("");
-          //$("#deptList").options[0].selected=true;
-          // // document.getElementById("deptList").options[0].selected=true;
-            $("#deptList").val('<option value="0" selected="selected">--不限--</option>');
-
-            $("#dtDate").val("");
-       }
-
-       function exp() {
-
-           var empId=$("#empId").val();
-           var deptNo=$("#deptList").val();
-           var dtDate=$("#dtDate").val();
-
-           location.href="${pageContext.request.contextPath}/export.do?empId="+empId+"&deptNo="+deptNo+"&dtDate="+dtDate;
-       }
-
+        })
     </script>
 
 </head>
@@ -117,46 +85,14 @@
     <span>位置：</span>
     <ul class="placeul">
         <li><a href="#">考勤管理</a></li>
-        <li><a href="#">考勤管理</a></li>
+        <li><a href="#">我的考勤</a></li>
     </ul>
 </div>
 
 <div class="rightinfo">
 
-    <ul class="prosearch">
-        <li>
-            <label>查询：</label><i>用户名</i>
-            <a>
-                <input name="" type="text" class="scinput" id="empId"/>
-            </a><i>所属部门</i>
-            <a>
-                <select class="select1" name="deptList" id="deptList">
 
-                </select>
-            </a>
-            <i>考勤时间</i>
-            <a>
-                <input name="" type="text" class="scinput" onfocus="WdatePicker({skin:'whyGreen',lang:'en'})" id="dtDate"/>
-            </a>
-            <a>
-                <input name="" type="button" class="sure" value="查询" onclick="sel()"/>
-
-            </a>
-            <a>
-                <input name="" type="button" class="sure" value="清空" onclick="setNull()"/>
-
-            </a>
-            <a>
-                <input name="" type="button" class="scbtn2" value="导出" onclick="exp()"/>
-
-            </a>
-
-        </li>
-
-
-    </ul>
-
-    <div class="formtitle1"><span>考勤管理</span></div>
+    <div class="formtitle1"><span>我的考勤</span></div>
 
     <table class="tablelist">
         <thead>
@@ -164,9 +100,6 @@
             <th>
                 <input name="" type="checkbox" value="" checked="checked" />
             </th>
-            <th>用户名<i class="sort"><img src="images/px.gif" /></i></th>
-            <th>真实姓名</th>
-            <th>所属部门</th>
             <th>出勤日期</th>
             <th>签到时间</th>
             <th>签退时间</th>
@@ -217,11 +150,7 @@
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
 </script>
-<script type="text/javascript">
-    $(function () {
-        sel();
-    })
-</script>
+
 </body>
 
 </html>

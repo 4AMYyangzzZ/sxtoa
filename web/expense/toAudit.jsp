@@ -71,13 +71,13 @@
                 <td>
                     <input name="" type="checkbox" value="" />
                 </td>
-                <td>${exp.emp.realName}</td>
+                <td>${exp.emp.realname}</td>
                 <td>${exp.totalAmount}</td>
                 <td>${exp.expTime}</td>
                 <td>${exp.expDesc}</td>
                 <td><a href="expenseDetail.html" class="tablelink"> 查看具体报销项</a></td>
                 <td> <a href="expenseImg.html" class="tablelink">查看所附图片</a></td>
-                <td><a href="javascript:open('expense/audit.jsp?expId=${exp.expId}','','width=500,height=230,left=300,top=300,location=0,scrollbars=0,resizable=0')" class="tablelink">审核</a>  <a href="auditHistory.html" class="tablelink">查看审核记录</a></td>
+                <td><a href="javascript:open('${pageContext.request.contextPath}/expense/audit.jsp?expId=${exp.expId}','','width=500,height=230,left=300,top=300,location=0,scrollbars=0,resizable=0')" class="tablelink">审核</a>  <a href="auditHistory.html" class="tablelink">查看审核记录</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.ExpenseMapper">
+
+    <insert id="addExpense" >
+        <selectKey order="AFTER" keyProperty="expId" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT into expense VALUES (NULL ,#{empId},#{totalAmount},#{expTime},#{expDesc},#{nextAuditor},#{lastResult},#{status})
+    </insert>
+
+    <resultMap id="myExpenseMap" type="Expense">
+        <id property="expId" column="expId"></id>
+        <result property="empId" column="empId"></result>
+        <result property="totalAmount" column="totalAmount"></result>
+        <result property="expTime" column="expTime"></result>
+        <result property="expDesc" column="expDesc"></result>
+        <result property="nextAuditor" column="nextAuditor"></result>
+        <result property="lastResult" column="lastResult"></result>
+        <result property="status" column="status"></result>
+        <association property="emp" javaType="Employee">
+            <id column="empid" property="empid"></id>
+            <result column="realname" property="realname"></result>
+        </association>
+        <collection property="list" ofType="ExpenseItem">
+            <id property="itemId" column="itemId"></id>
+            <result property="expId" column="expId"></result>
+            <result property="type" column="type"></result>
+            <result property="amount" column="amount"></result>
+            <result property="itemDesc" column="itemDesc"></result>
+        </collection>
+    </resultMap>
+    <select id="myExpense" resultMap="myExpenseMap">
+        select * from expense exp,expenseitem eit WHERE exp.expId=eit.expId AND empId=#{empid};
+    </select>
+
+    <select id="toAudit" resultMap="myExpenseMap">
+        select * from expense exp,expenseitem eit,employee emp WHERE exp.expId=eit.expId AND emp.empid=exp.empid AND nextAuditor=#{empid};
+    </select>
+
+    <select id="findExpenseById" resultType="Expense">
+        SELECT * FROM expense WHERE expId=#{expId}
+    </select>
+
+    <update id="updateExpense">
+        UPDATE expense SET nextAuditor=#{nextAuditor},lastResult=#{lastResult},status=#{status} WHERE expId=#{expId}
+    </update>
+</mapper>

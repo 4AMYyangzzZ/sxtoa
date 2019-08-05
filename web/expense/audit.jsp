@@ -43,7 +43,7 @@
 
             $.ajax({
                 type:"POST",
-                url:"servlet/ExpenseServlet?method=audit",
+                url:"${pageContext.request.contextPath}/audit.do",
                 data:{"expId":expId,"result":result,"auditDesc":auditDesc},
                 dataType:"text",
                 success:function (result) {
